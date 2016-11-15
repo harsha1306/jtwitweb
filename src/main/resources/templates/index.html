@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" th:href="style.css" />
+<title>JTwit Web Client</title>
+<script type="text/javascript"
+	src="http://code.jquery.com/jquery-1.6.1.min.js"></script>
+
+</head>
+
+<body>
+	<div class="content">
+		<header>
+			<h1 class="headTitle">Hello! Welcome to JTwit Web Client</h1>
+
+		</header>
+		<div class="back">
+
+			Use the link below to sign into your twitter and provide the pin in
+			the box below<br /> <a id="twitterLink" target="_blank"
+				th:href="${auth}">Connect to Twitter</a>
+
+
+
+			<form class="loginForm" action="/" th:object="${pinholder}" method="post">
+				Twitter Pin: <input type="text" th:field="*{pin}" /> <input
+					type="submit" value="Submit" />
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

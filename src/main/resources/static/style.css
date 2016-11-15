@@ -1,0 +1,179 @@
+.headTitle {
+	box-sizing: content-box;
+	margin: auto;
+	max-width: 60%;
+	border-radius: 12px 12px 0px 0px;
+	background-color: #00ccff;
+	text-align: center;
+}
+
+body {
+	background-color: #000000;
+	font-family: "Segoe UI", Helvetica, sans-serif;
+	text-align: center;
+}
+
+.content {
+	margin: 0 auto 0 auto;
+}
+
+.loginForm {
+	padding: 30px;
+}
+
+.tweet {
+	border: 5px solid black;
+	text-align: left; border-radius : 12px;
+	background-color: gray;
+	display: block;
+	padding: 10px;
+	cursor:default;
+	border-radius: 12px;
+}
+
+.tweet:HOVER{
+	background-color: #d6d6d6;
+}
+
+.profileImage {
+	display: inline-block;
+}
+
+.tweetBlock {
+	display: inline-block;
+	padding-left: 20px;
+	max-width: 80%;
+}
+
+.retweet {
+	display:inline-block;
+	cursor:pointer;
+	border-radius:12px;
+	padding:5px;
+	background-color: #22609d;
+}
+
+.retweet:HOVER{
+	background-color: #49e4dd;
+}
+
+.tweetWindow{
+	display: none;
+}
+
+.like {
+	display:inline-block;
+	cursor:pointer;
+	border-radius:12px;
+	padding:5px;
+	background-color: #22609d;
+}
+
+.like:HOVER{
+	background-color: #49e4dd;
+}
+
+.liked{
+	display:inline-block;
+	cursor:pointer;
+	border-radius:12px;
+	padding:5px;
+	background-color: #9aa202;
+}
+
+.liked:HOVER{
+	background-color: #f0fc0a;
+}
+
+.menuBar {
+	padding: 13px;
+	text-align: left;
+	background-color: #3c78ca;
+}
+
+.menuElement {
+	border-radius: 12px;
+	cursor: pointer;
+	display: inline;
+	padding: 10px;
+	background-color: #22609d;
+}
+
+.menuElement:HOVER {
+	background-color: #49e4dd;
+}
+
+.tweetButton {
+	border-radius: 12px;
+	cursor: pointer;
+	display: inline;
+	padding: 10px;
+	background-color: #47329c;
+}
+
+.tweetButton:HOVER {
+	background-color: #8a78d3;
+}
+
+.sendButton{
+	border-radius: 12px;
+	cursor: pointer;
+	display: inline;
+	border-radius:12px;
+	padding:5px;
+	background-color: #47329c;
+}
+
+.sendButton:HOVER {
+	background-color: #8a78d3;
+}
+
+.deleteTweet{
+	display:inline-block;
+	cursor:pointer;
+	border-radius:12px;
+	padding:5px;
+	background-color: #22609d;
+}
+
+.deleteTweet:HOVER{
+	background-color: #f5070e;
+}
+
+.retweeted{
+	border-radius: 12px;
+	cursor: default;
+	display: inline;
+	border-radius:12px;
+	padding:5px;
+	background-color: #008000;
+}
+
+.userTweets{
+	background-color: #000000;
+	display: none;
+}
+
+.timeLine{
+	background-color: #000000;
+	display:block;
+}
+
+.back {
+	border-radius: 12px;
+	box-sizing: content-box;
+	margin: auto;
+	max-width: 60%;
+	border-radius: 0px 0px 12px 12px;
+	background-color: rgba(150, 150, 150, 0.5);
+	margin: auto;
+}
+
+.content{
+	cursor:pointer;
+}
+
+
+.charCount{
+	float:right;
+}

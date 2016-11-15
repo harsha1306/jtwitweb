@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" th:href="style.css" />
+<title>JTwit Web Client Home</title>
+</head>
+<body>
+	<div class="content">
+		<header>
+			<h1 class="headTitle">JTwit Web Client</h1>
+
+		</header>
+		<div class="back">
+			<form class="loginForm" th:if="${loginFailure}" action='/' method='get'>
+				Error in login<br /> <input type="submit" value="Retry" />
+			</form>
+
+			<form class="loginForm" th:unless="${loginFailure}" action="/tweets" method="get">
+				Login Success proceed to TimeLine
+				<br /> <input type="submit" value="Proceed" />
+			</form>
+			<script th:inline="javascript">
+				sessionStorage.uid=/*[[${userID}]]*/
+			</script>
+		</div>
+	</div>
+</body>
+</html>

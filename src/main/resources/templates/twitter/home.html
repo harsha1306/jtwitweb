@@ -1,0 +1,104 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" th:href="style.css" />
+<script type="text/javascript" th:src="script.js"></script>
+<title>JTwit Web Client Home</title>
+</head>
+<body>
+	<div class="content">
+		<header>
+			<h1 class="headTitle">JTwit Web Client</h1>
+		</header>
+		<div class="back">
+			<div class="menuBar">
+				<div class="menuElement" onclick="showTimeline()">Timeline</div>
+				<div class="menuElement" onclick="showUserTweets()">User
+					Tweets</div>
+				<div class="menuElement" onclick="refresh()">Refresh</div>
+				<div class="tweetButton" onclick="tweetDialog()">Tweet</div>
+			</div>
+			<div class="tweetWindow" id="tweetWindow">
+				<div class="tweet">
+					<div class="profileImage">
+						<img th:src="${user.userProfile.profileImageURL}" alt="" />
+					</div>
+					<div class="tweetBlock" style="width: 100%">
+						<div class="uName" th:text="${user.userProfile.screenName}"></div>
+						<div class="content">
+							<textarea id="myTweet" style="width: 100%"
+								onkeyup="countChars('myTweet','charCount');"
+								onkeydown="countChars('myTweet','charCount');"
+								onmouseout="countChars('myTweet','charCount');"></textarea>
+						</div>
+						<div class="actionRow">
+							<div class="sendButton" onclick="sendTweet()">Send</div>
+							<div class="sendButton" onclick="cancelTweet()">Cancel</div>
+						</div>
+					</div>
+					<div class="charCount" id="charCount">0/140</div>
+				</div>
+			</div>
+			<div class="userTweets" id="userTweets">
+				<div class="tweet" th:each="tweet : ${user.userTimeline}">
+					<div class="profileImage">
+						<img th:src="${tweet.user.profileImageURL}" alt="" />
+					</div>
+					<div class="tweetBlock">
+						<div class="uName" th:text="${tweet.user.screenName}"></div>
+						<div class="content" th:text="${tweet.text}"
+							th:href="'https://twitter.com/' + ${tweet.user.screenName}+ '/status/' + ${tweet.id}"
+							onclick="openExternal(this)"></div>
+						<div class="actionRow">
+							<div class="retweet" th:unless="${tweet.retweeted}"
+								th:onclick="'retweet(\'' + ${tweet.id} + '\',this);'"
+								th:text="'🔃 '+${tweet.retweetCount}"></div>
+							<div class="retweeted" th:if="${tweet.retweeted}"
+								th:text="'🔃 '+${tweet.retweetCount}"></div>
+							<div th:unless="${tweet.favorited}" class="like"
+								th:onclick="'like(\'' + ${tweet.id} + '\',this);'"
+								th:text="'♥ '+${tweet.favoriteCount}"></div>
+							<div th:if="${tweet.favorited}" class="liked"
+								th:onclick="'dislike(\'' + ${tweet.id} + '\',this);'"
+								th:text="'♥ '+${tweet.favoriteCount}"></div>
+							<div class="deleteTweet"
+								th:onclick="'deleteTweet(\''+${tweet.id}+'\',this);'">❌</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="timeLine" id="timeLine">
+				<div class="tweet" th:each="tweet : ${user.homeTimeline}">
+					<div class="profileImage">
+						<img th:src="${tweet.user.profileImageURL}" alt="" />
+					</div>
+					<div class="tweetBlock">
+						<div class="uName" th:text="${tweet.user.screenName}"></div>
+						<div class="content" th:text="${tweet.text}"
+							th:href="'https://twitter.com/' + ${tweet.user.screenName}+ '/status/' + ${tweet.id}"
+							onclick="openExternal(this)"></div>
+						<div class="actionRow">
+							<div class="retweet" th:unless="${tweet.retweeted}"
+								th:onclick="'retweet(\'' + ${tweet.id} + '\',this);'"
+								th:text="'🔃 '+${tweet.retweetCount}"></div>
+							<div class="retweeted" th:if="${tweet.retweeted}"
+								th:text="'🔃 '+${tweet.retweetCount}"></div>
+							<div th:unless="${tweet.favorited}" class="like"
+								th:onclick="'like(\'' + ${tweet.id} + '\',this);'"
+								th:text="'♥ '+${tweet.favoriteCount}"></div>
+							<div th:if="${tweet.favorited}" class="liked"
+								th:onclick="'dislike(\'' + ${tweet.id} + '\',this);'"
+								th:text="'♥ '+${tweet.favoriteCount}"></div>
+							<div class="deleteTweet" th:if="${tweet.user.id eq user.userID}"
+								th:onclick="'deleteTweet(\''+${tweet.id}+'\',this);'">❌</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
