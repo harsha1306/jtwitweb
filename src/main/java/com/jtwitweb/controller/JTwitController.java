@@ -30,19 +30,27 @@ import twitter4j.conf.ConfigurationBuilder;
 @SessionAttributes({ "user" })
 public class JTwitController {
 
+	/**
+	 * This is the web controller for the  twitter RestAPI
+	 */
+	
+	
 	ConfigurationBuilder cb;
 	TwitterFactory tf;
-	HashMap<Long, Twitter> connections;
+	HashMap<Long, Twitter> connections; //This stores the active connections of the current instance
 	Twitter twitter;
 	RequestToken requestToken = null;
 	AccessToken accessToken = null;
 
 	public static final String HOME_URL = "/";
 
+	
 	public JTwitController() {
 		connections = new HashMap<Long, Twitter>();
 	}
 
+	
+	//This maps to the homepage to serve the homepage of the website
 	@RequestMapping(method = RequestMethod.GET)
 	public String loginTwitter(Model model) {
 
@@ -61,6 +69,7 @@ public class JTwitController {
 		return "index";
 	}
 
+	//This will handle the pin from the user and create and authenticate an instance of the Twitter handle of the user
 	@RequestMapping(method = RequestMethod.POST)
 	public String MainScreen(@ModelAttribute Pinholder pinholder, ModelMap modelmap) {
 		Boolean loginFailure = false;
@@ -79,6 +88,7 @@ public class JTwitController {
 		return "twitter/loginConfirm";
 	}
 
+	//This is the landing page that shows the tweets of the users. 
 	@RequestMapping(value = "tweets",method=RequestMethod.GET)
 	public String getTweets(@ModelAttribute User user, ModelMap modelmap) {
 		Twitter userTwitter = connections.get(user.getUserID());
@@ -95,6 +105,7 @@ public class JTwitController {
 		return "twitter/home";
 	}
 	
+	//This method handles the sending of a tweet
 	@RequestMapping(value = "tweets",method=RequestMethod.POST)
 	public String postTweet(@ModelAttribute User user, ModelMap modelmap,@RequestHeader String tweetData) {
 		Twitter userTwitter = connections.get(user.getUserID());
@@ -112,6 +123,7 @@ public class JTwitController {
 		return "twitter/home";
 	}
 
+	//This method handles the liking of a post
 	@RequestMapping(value = "tweets/like/{likeID}")
 	public String makeLike(@ModelAttribute User user, ModelMap modelmap, @PathVariable String likeID) {
 		Twitter userTwitter = connections.get(user.getUserID());
@@ -127,6 +139,7 @@ public class JTwitController {
 		return "twitter/home";
 	}
 
+	//This method unlikes a tweet
 	@RequestMapping(value = "tweets/like/{likeID}",method = RequestMethod.DELETE)
 	public String removeLike(@ModelAttribute User user, ModelMap modelmap, @PathVariable String likeID) {
 		Twitter userTwitter = connections.get(user.getUserID());
@@ -142,6 +155,7 @@ public class JTwitController {
 		return "twitter/home";
 	}
 	
+	//This method is used to retweet
 	@RequestMapping(value = "tweets/retweet/{retweetID}",method = RequestMethod.GET)
 	public String retweet(@ModelAttribute User user, ModelMap modelmap, @PathVariable String retweetID) {
 		Twitter userTwitter = connections.get(user.getUserID());
@@ -161,6 +175,7 @@ public class JTwitController {
 		return "twitter/home";
 	}
 	
+	//This method delete's a tweet
 	@RequestMapping(value = "tweets/delete/{deleteID}",method = RequestMethod.DELETE)
 	public String delTweet(@ModelAttribute User user, ModelMap modelmap, @PathVariable String deleteID) {
 		Twitter userTwitter = connections.get(user.getUserID());
@@ -176,6 +191,7 @@ public class JTwitController {
 		return "twitter/home";
 	}
 	
+	//This is used to update the feeds after an action has been performed. 
 	public void updateFeeds(User user,Long id,Status newStatus) {
 		boolean found = false;
 		for (Iterator<Status> iterator = user.getHomeTimeline().iterator(); iterator.hasNext();) {
